@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function About() {
   return (
@@ -20,31 +21,19 @@ export default function About() {
       <section className="section-padding">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="h-96 bg-gray-200 relative overflow-hidden">
-              {/* Replace with actual image */}
-              <div className="absolute inset-0 bg-gray-300 flex items-center justify-center">
-                <span>Our Story Image</span>
-              </div>
+            <div className="h-96 relative overflow-hidden rounded-lg">
+              <Image
+                src="/images/team.jpg"
+                alt="Rako Foods Team"
+                fill
+                style={{ objectFit: "cover" }}
+                className="rounded-lg"
+              />
             </div>
             <div>
               <h2 className="text-3xl font-semibold mb-4">Our Story</h2>
               <p className="text-gray-600 mb-4">
-                Rako Foods was founded in 2010 with a simple mission: to create
-                memorable dining experiences for life's most important moments.
-                What began as a small family operation has grown into one of the
-                region's most trusted catering services.
-              </p>
-              <p className="text-gray-600 mb-4">
-                Our journey started when our founder, Chef Michael Rako,
-                recognized a need for personalized catering services that went
-                beyond standard menus and cookie-cutter presentations. Drawing
-                on his culinary expertise and passion for exceptional service,
-                he established Rako Foods to bring his vision to life.
-              </p>
-              <p className="text-gray-600">
-                Today, we continue to uphold the values that have guided us from
-                the beginning: quality ingredients, creative cuisine, impeccable
-                service, and a commitment to making each event uniquely special.
+                At Rako Foods, established in 2018 at KNUST, we are passionate about crafting fresh, local fruit-based drinks and creamy yogurt that celebrate Ghana's vibrant flavors. Founded by a student with a vision for healthy beverages, we source from local farmers to create small-batch products that burst with natural sweetness and probiotic goodness, ensuring every sip supports both your health and our community.
               </p>
             </div>
           </div>
@@ -56,12 +45,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-semibold mb-8">Our Mission</h2>
           <p className="text-gray-600 text-xl max-w-3xl mx-auto">
-            At Rako Foods, our mission is to create exceptional culinary
-            experiences that celebrate life's meaningful moments. We believe
-            that food has the power to bring people together, create lasting
-            memories, and express culture and tradition. Through our dedication
-            to quality, creativity, and personalized service, we aim to exceed
-            expectations and make every occasion we cater truly unforgettable.
+            At Rako Foods, our mission is to create exceptional beverage experiences using traditional Ghanaian ingredients and recipes. We believe that our drinks have the power to refresh, nourish, and connect people to our rich cultural heritage. Through our dedication to quality, natural ingredients, and authentic flavors, we aim to bring the true taste of Ghana to every bottle we produce.
           </p>
         </div>
       </section>
@@ -74,75 +58,56 @@ export default function About() {
             <div className="card">
               <div className="mb-4 text-center">
                 <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white text-2xl">
-                  <span>Q</span>
+                  <span>N</span>
                 </div>
               </div>
               <h3 className="text-xl font-semibold mb-2 text-center">
-                Quality Ingredients
+                Natural Ingredients
               </h3>
               <p className="text-gray-600 text-center">
-                We source the freshest, highest-quality ingredients from local
-                suppliers whenever possible to ensure exceptional taste.
+                We use only fresh, natural ingredients sourced from local farmers to create authentic flavors without artificial additives.
               </p>
             </div>
 
             <div className="card">
               <div className="mb-4 text-center">
                 <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white text-2xl">
-                  <span>E</span>
+                  <span>H</span>
                 </div>
               </div>
               <h3 className="text-xl font-semibold mb-2 text-center">
-                Experienced Team
+                Health Benefits
               </h3>
               <p className="text-gray-600 text-center">
-                Our team of chefs, servers, and event coordinators brings years
-                of expertise to every event we cater.
+                Our probiotic yoghurt and fruit drinks are packed with nutrients that support digestive health and boost your immune system.
               </p>
             </div>
 
             <div className="card">
               <div className="mb-4 text-center">
                 <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white text-2xl">
-                  <span>C</span>
+                  <span>T</span>
                 </div>
               </div>
               <h3 className="text-xl font-semibold mb-2 text-center">
-                Customization
+                Traditional Recipes
               </h3>
               <p className="text-gray-600 text-center">
-                We work closely with you to create customized menus that reflect
-                your preferences, dietary needs, and event theme.
+                We follow authentic Ghanaian recipes that have been perfected over generations, bringing you the true taste of our culture.
               </p>
             </div>
 
             <div className="card">
               <div className="mb-4 text-center">
                 <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white text-2xl">
-                  <span>A</span>
+                  <span>F</span>
                 </div>
               </div>
               <h3 className="text-xl font-semibold mb-2 text-center">
-                Attention to Detail
+                Freshness Guaranteed
               </h3>
               <p className="text-gray-600 text-center">
-                From food presentation to service execution, we pay meticulous
-                attention to every aspect of your catering experience.
-              </p>
-            </div>
-
-            <div className="card">
-              <div className="mb-4 text-center">
-                <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white text-2xl">
-                  <span>R</span>
-                </div>
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-center">
-                Reliability
-              </h3>
-              <p className="text-gray-600 text-center">
-                We understand the importance of your event and are committed to
-                delivering on our promises, every time.
+                Our small-batch production ensures that every bottle you receive is fresh and retains maximum flavor and nutritional value.
               </p>
             </div>
 
@@ -152,11 +117,23 @@ export default function About() {
                   <span>V</span>
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-center">Value</h3>
+              <h3 className="text-xl font-semibold mb-2 text-center">
+                Variety
+              </h3>
               <p className="text-gray-600 text-center">
-                We provide exceptional quality and service at competitive
-                prices, ensuring you receive outstanding value for your
-                investment.
+                From refreshing sobolo to creamy yoghurt, we offer a diverse range of beverages to suit different tastes and occasions.
+              </p>
+            </div>
+
+            <div className="card">
+              <div className="mb-4 text-center">
+                <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white text-2xl">
+                  <span>S</span>
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold mb-2 text-center">Sustainability</h3>
+              <p className="text-gray-600 text-center">
+                By supporting local farmers and using eco-friendly packaging where possible, we strive to make a positive impact on our community.
               </p>
             </div>
           </div>
@@ -167,75 +144,62 @@ export default function About() {
       <section className="bg-gray-100 section-padding">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="section-title">Meet Our Team</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg overflow-hidden shadow-md">
-              <div className="h-64 bg-gray-200 relative">
-                {/* Replace with actual image */}
-                <div className="absolute inset-0 bg-gray-300 flex items-center justify-center">
-                  <span>Chef Photo</span>
-                </div>
+              <div className="h-80 relative bg-gray-100">
+                <Image
+                  src="/images/Rhoda.jpg"
+                  alt="Rhoda Awo Korkoi Ogunu"
+                  fill
+                  style={{ objectFit: "cover", objectPosition: "center 20%" }}
+                  className="rounded-t-lg"
+                />
               </div>
               <div className="p-4">
-                <h3 className="text-xl font-semibold mb-1">Michael Rako</h3>
-                <p className="text-primary font-medium mb-2">
-                  Founder & Executive Chef
-                </p>
+                <h3 className="text-xl font-semibold mb-1">
+                  Rhoda Awo Korkoi Ogunu (RAKO)
+                </h3>
+                <p className="text-primary font-medium mb-2">Founder</p>
                 <p className="text-gray-600 text-sm">
-                  With over 20 years of culinary experience, Chef Michael leads
-                  our team with passion and creativity.
+                  Passionate founder of RAKO Foods who started the journey in 2018 at KNUST with a vision to create authentic Ghanaian beverages. Her innovative approach to traditional drinks has created a beloved local brand.
                 </p>
               </div>
             </div>
 
             <div className="bg-white rounded-lg overflow-hidden shadow-md">
-              <div className="h-64 bg-gray-200 relative">
-                {/* Replace with actual image */}
-                <div className="absolute inset-0 bg-gray-300 flex items-center justify-center">
-                  <span>Chef Photo</span>
-                </div>
+              <div className="h-80 relative bg-gray-100">
+                <Image
+                  src="/images/baaba.jpg"
+                  alt="Baaba"
+                  fill
+                  style={{ objectFit: "cover", objectPosition: "center 20%" }}
+                  className="rounded-t-lg"
+                />
               </div>
               <div className="p-4">
-                <h3 className="text-xl font-semibold mb-1">Sophia Chen</h3>
-                <p className="text-primary font-medium mb-2">Head Chef</p>
+                <h3 className="text-xl font-semibold mb-1">Baaba</h3>
+                <p className="text-primary font-medium mb-2">Assistant</p>
                 <p className="text-gray-600 text-sm">
-                  Sophia brings international culinary expertise and innovative
-                  techniques to our diverse menu offerings.
+                  The backbone of daily operations at RAKO Foods, Baaba ensures the perfect quality of our drinks and yoghurt products. Her attention to detail and dedication helps maintain our high standards.
                 </p>
               </div>
             </div>
 
             <div className="bg-white rounded-lg overflow-hidden shadow-md">
-              <div className="h-64 bg-gray-200 relative">
-                {/* Replace with actual image */}
-                <div className="absolute inset-0 bg-gray-300 flex items-center justify-center">
-                  <span>Event Manager Photo</span>
-                </div>
+              <div className="h-80 relative bg-gray-100">
+                <Image
+                  src="/images/Golden.jpg"
+                  alt="Golden Boy"
+                  fill
+                  style={{ objectFit: "cover" }}
+                  className="rounded-t-lg"
+                />
               </div>
               <div className="p-4">
-                <h3 className="text-xl font-semibold mb-1">James Wilson</h3>
-                <p className="text-primary font-medium mb-2">Event Manager</p>
+                <h3 className="text-xl font-semibold mb-1">Golden Boy</h3>
+                <p className="text-primary font-medium mb-2">Organiser</p>
                 <p className="text-gray-600 text-sm">
-                  James ensures flawless execution of every event, coordinating
-                  our team to meet your specific needs.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg overflow-hidden shadow-md">
-              <div className="h-64 bg-gray-200 relative">
-                {/* Replace with actual image */}
-                <div className="absolute inset-0 bg-gray-300 flex items-center justify-center">
-                  <span>Customer Relations Photo</span>
-                </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-xl font-semibold mb-1">Emily Rodriguez</h3>
-                <p className="text-primary font-medium mb-2">
-                  Customer Relations
-                </p>
-                <p className="text-gray-600 text-sm">
-                  Emily works closely with clients to understand their vision
-                  and transform it into a memorable experience.
+                  The creative force behind RAKO Foods' events and customer experiences. Golden Boy coordinates our product launches, tastings, and special promotions, bringing energy and flair to everything we do.
                 </p>
               </div>
             </div>
@@ -247,17 +211,16 @@ export default function About() {
       <section className="bg-primary text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-semibold mb-4">
-            Ready to Work With Us?
+            Try Our Refreshing Drinks Today
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Contact our team today to discuss how we can make your next event
-            truly special.
+            Contact us to order our delicious yoghurt and fruit drinks for your personal enjoyment or your next event.
           </p>
           <Link
             href="/contact"
-            className="bg-white text-primary py-3 px-8 rounded-sm font-medium hover:bg-opacity-90 transition-all"
+            className="inline-block bg-white text-primary font-medium py-3 px-8 rounded-md hover:bg-gray-100 transition-colors duration-300"
           >
-            Get in Touch
+            Contact Us
           </Link>
         </div>
       </section>

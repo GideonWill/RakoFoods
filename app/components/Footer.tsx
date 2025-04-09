@@ -3,12 +3,13 @@
 import Link from "next/link";
 import {
   FaFacebook,
-  FaTwitter,
   FaInstagram,
   FaLinkedin,
   FaPhone,
   FaEnvelope,
   FaMapMarkerAlt,
+  FaTiktok,
+  FaWhatsapp,
 } from "react-icons/fa";
 
 const Footer = () => {
@@ -21,30 +22,51 @@ const Footer = () => {
             <p className="text-gray-300">
               Premium catering services for your special events.
             </p>
-            <div className="flex space-x-4 mt-6">
+            <div className="flex flex-wrap space-x-4 mt-6">
               <a
-                href="#"
-                className="text-gray-300 hover:text-white transition-colors duration-200"
+                href="https://www.facebook.com/RhodalynOgunu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors duration-200 mb-2"
+                aria-label="Facebook - Rhodalyn Ogunu"
               >
                 <FaFacebook size={24} />
               </a>
               <a
-                href="#"
-                className="text-gray-300 hover:text-white transition-colors duration-200"
-              >
-                <FaTwitter size={24} />
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-white transition-colors duration-200"
+                href="https://www.instagram.com/rako.foods_gh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors duration-200 mb-2"
+                aria-label="Instagram - rako.foods_gh"
               >
                 <FaInstagram size={24} />
               </a>
               <a
-                href="#"
-                className="text-gray-300 hover:text-white transition-colors duration-200"
+                href="https://www.linkedin.com/in/rhoda-ogunu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors duration-200 mb-2"
+                aria-label="LinkedIn - Rhoda Ogunu"
               >
                 <FaLinkedin size={24} />
+              </a>
+              <a
+                href="https://www.tiktok.com/@rakofood"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors duration-200 mb-2"
+                aria-label="TikTok - Rako Food"
+              >
+                <FaTiktok size={24} />
+              </a>
+              <a
+                href="https://wa.me/233549978969"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors duration-200 mb-2"
+                aria-label="WhatsApp"
+              >
+                <FaWhatsapp size={24} />
               </a>
             </div>
           </div>
@@ -54,15 +76,19 @@ const Footer = () => {
             <ul className="space-y-4 text-gray-300">
               <li className="flex items-center">
                 <FaMapMarkerAlt className="mr-3 text-accent" size={18} />
-                <span>123 Main Street, Accra, Ghana</span>
+                <span>Accra, Ghana</span>
               </li>
               <li className="flex items-center">
                 <FaPhone className="mr-3 text-accent" size={18} />
-                <span>Phone: +233 123 456 7890</span>
+                <span>Call: +233 506195302</span>
+              </li>
+              <li className="flex items-center">
+                <FaWhatsapp className="mr-3 text-accent" size={18} />
+                <span>WhatsApp: +233 549978969</span>
               </li>
               <li className="flex items-center">
                 <FaEnvelope className="mr-3 text-accent" size={18} />
-                <span>Email: info@rakofoods.com</span>
+                <span>Email: rakofoods@gmail.com</span>
               </li>
               <li className="mt-6">
                 <Link

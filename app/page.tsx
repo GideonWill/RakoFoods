@@ -159,40 +159,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Special Offers */}
-      <section className="section-padding bg-lightgreen">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-lg p-8 shadow-lg border-l-4 border-accent">
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="md:w-2/3 mb-6 md:mb-0 md:pr-8">
-                <h2 className="text-3xl font-semibold mb-4 text-accent">
-                  Holiday Special
-                </h2>
-                <p className="text-xl mb-4">
-                  Enjoy 3% off services during holiday seasons! Perfect for your
-                  family gatherings and celebrations.
-                </p>
-                <p className="text-gray-600 mb-6">
-                  Our holiday specials include customized meal packages and
-                  exclusive drink selections.
-                </p>
-                <Link href="/services" className="btn-primary">
-                  Check Current Offers
-                </Link>
-              </div>
-              <div className="md:w-1/3 h-48 bg-gray-200 relative overflow-hidden rounded-lg">
-                <Image
-                  src="/images/holiday.jpg"
-                  alt="Holiday Special Offer"
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Video Gallery Preview */}
       <section className="section-padding">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -202,7 +168,7 @@ export default function Home() {
           <div className="aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg mb-12">
             <div className="relative h-[500px] w-full">
               <AutoplayVideo
-                src="/images/thekitchen.mp4"
+                src="/images/thumbnail3.mp4"
                 className="w-full h-full object-cover rounded-lg shadow-lg"
                 poster="/images/video-thumbnail.jpg"
                 controls={true}
@@ -232,7 +198,7 @@ export default function Home() {
             </div>
             <div className="h-48 bg-gray-200 rounded-lg overflow-hidden shadow-md">
               <AutoplayVideo
-                src="/images/thumbnail3.mp4"
+                src="/images/thekitchen.mp4"
                 className="w-full h-full object-cover"
                 muted={true}
                 loop={true}

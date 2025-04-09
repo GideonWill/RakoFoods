@@ -37,15 +37,12 @@ export default function Services() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  Traditional Stews
-                </h3>
+                <h3 className="text-xl font-semibold mb-2">Traditional Stews</h3>
                 <p className="text-gray-600 mb-4">
                   Hearty traditional stews made with fresh ingredients and
                   authentic recipes. Portion sizes available for individuals and
                   families.
                 </p>
-                <div className="text-accent font-semibold">From GHS 50.00</div>
               </div>
             </div>
 
@@ -64,7 +61,6 @@ export default function Services() {
                   Nutritious soups prepared with local ingredients. Perfect for
                   a light, healthy meal option.
                 </p>
-                <div className="text-accent font-semibold">From GHS 40.00</div>
               </div>
             </div>
 
@@ -83,7 +79,6 @@ export default function Services() {
                   Combination of stews and soups for an entire week.
                   Customizable based on your preferences.
                 </p>
-                <div className="text-accent font-semibold">From GHS 250.00</div>
               </div>
             </div>
           </div>
@@ -134,7 +129,6 @@ export default function Services() {
                   Traditional hibiscus drink known for its refreshing taste and
                   health benefits. Available in various sizes.
                 </p>
-                <div className="text-accent font-semibold">From GHS 15.00</div>
               </div>
             </div>
 
@@ -153,7 +147,6 @@ export default function Services() {
                   Creamy, freshly made yoghurt with natural ingredients. Plain
                   and flavored options available.
                 </p>
-                <div className="text-accent font-semibold">From GHS 20.00</div>
               </div>
             </div>
 
@@ -172,7 +165,6 @@ export default function Services() {
                   Traditional lemon-based drink with a refreshing citrus flavor.
                   Perfect for hot days.
                 </p>
-                <div className="text-accent font-semibold">From GHS 18.00</div>
               </div>
             </div>
 
@@ -191,7 +183,6 @@ export default function Services() {
                   Freshly squeezed pineapple juice without preservatives or
                   added sugar. Sweet and refreshing.
                 </p>
-                <div className="text-accent font-semibold">From GHS 20.00</div>
               </div>
             </div>
 
@@ -210,7 +201,6 @@ export default function Services() {
                   Traditional tamarind juice with a perfect balance of sweet and
                   sour flavors. Rich in vitamins.
                 </p>
-                <div className="text-accent font-semibold">From GHS 20.00</div>
               </div>
             </div>
 
@@ -229,7 +219,6 @@ export default function Services() {
                   Traditional fermented millet drink, rich in probiotics and
                   natural nutrients. A healthy option.
                 </p>
-                <div className="text-accent font-semibold">From GHS 25.00</div>
               </div>
             </div>
           </div>
@@ -259,6 +248,42 @@ export default function Services() {
         </div>
       </section>
 
+      {/* Menu Link Section */}
+      <section className="section-padding bg-gray-50" id="menu-link">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="section-title mb-6">Explore Our Menu</h2>
+          <p className="text-gray-600 max-w-3xl mx-auto mb-8">
+            Browse our complete selection of fresh yoghurt, local drinks, and
+            homemade foods. Our menu features authentic Ghanaian flavors,
+            carefully prepared with quality ingredients.
+          </p>
+
+          <div className="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
+            <div className="flex justify-center mb-6">
+              <Image
+                src="/images/sobolo.jpg"
+                alt="Rako Foods Menu"
+                width={300}
+                height={200}
+                style={{ objectFit: "cover" }}
+                className="rounded-lg"
+              />
+            </div>
+            <h3 className="text-2xl font-semibold mb-4">View Our Full Menu</h3>
+            <p className="text-gray-600 mb-6">
+              See detailed pricing, product descriptions, and available sizes
+              for all our offerings.
+            </p>
+            <Link
+              href="/menu"
+              className="btn-primary inline-block px-8 py-3 text-lg"
+            >
+              Go to Menu
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Event Catering */}
       <section className="section-padding" id="events">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -272,7 +297,7 @@ export default function Services() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="h-96 bg-gray-200 relative overflow-hidden rounded-lg">
               <Image
-                src="/images/event.jpg"
+                src="/images/wed.jpg"
                 alt="Wedding Catering"
                 fill
                 style={{ objectFit: "cover" }}
@@ -333,7 +358,7 @@ export default function Services() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="h-96 bg-gray-200 relative overflow-hidden rounded-lg">
               <Image
-                src="/images/birthday.jpg"
+                src="/images/wedding1.jpg"
                 alt="Birthday Party Catering"
                 fill
                 style={{ objectFit: "cover" }}
@@ -384,7 +409,7 @@ export default function Services() {
             </div>
             <div className="h-96 bg-gray-200 relative overflow-hidden rounded-lg order-1 lg:order-2">
               <Image
-                src="/images/seminar.jpg"
+                src="/images/sem.jpg"
                 alt="Seminar Catering"
                 fill
                 style={{ objectFit: "cover" }}
