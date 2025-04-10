@@ -37,7 +37,9 @@ export default function Services() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Traditional Stews</h3>
+                <h3 className="text-xl font-semibold mb-2">
+                  Traditional Stews
+                </h3>
                 <p className="text-gray-600 mb-4">
                   Hearty traditional stews made with fresh ingredients and
                   authentic recipes. Portion sizes available for individuals and
@@ -284,10 +286,10 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Event Catering */}
+      {/* Local Bar Services */}
       <section className="section-padding" id="events">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title">Event Catering Services</h2>
+          <h2 className="section-title">Local Bar Services</h2>
           <p className="text-gray-600 text-center max-w-3xl mx-auto mb-12">
             Make your event memorable with our professional catering services.
             We cater to a wide range of events including weddings, funerals,

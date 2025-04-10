@@ -101,7 +101,9 @@ export default function Home() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Event Catering</h3>
+                <h3 className="text-xl font-semibold mb-2">
+                  Local Bar Services
+                </h3>
                 <p className="text-gray-600 mb-4">
                   Full-service catering for weddings, birthdays, funerals,
                   seminars, and more.

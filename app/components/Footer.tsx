@@ -20,7 +20,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-2xl font-bold">RAKO FOODS</h3>
             <p className="text-gray-300">
-              Premium catering services for your special events.
+              Local Bar Services for your special events.
             </p>
             <div className="flex flex-wrap space-x-4 mt-6">
               <a

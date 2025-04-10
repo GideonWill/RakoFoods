@@ -11,7 +11,7 @@ export default function About() {
             About Rako Foods
           </h1>
           <p className="text-xl max-w-3xl mx-auto">
-            Dedicated to delivering exceptional catering experiences for your
+            Dedicated to delivering exceptional Local Bar Services for your
             special moments.
           </p>
         </div>
@@ -33,7 +33,13 @@ export default function About() {
             <div>
               <h2 className="text-3xl font-semibold mb-4">Our Story</h2>
               <p className="text-gray-600 mb-4">
-                At Rako Foods, established in 2018 at KNUST, we are passionate about crafting fresh, local fruit-based drinks and creamy yogurt that celebrate Ghana's vibrant flavors. Founded by a student with a vision for healthy beverages, we source from local farmers to create small-batch products that burst with natural sweetness and probiotic goodness, ensuring every sip supports both your health and our community.
+                At Rako Foods, established in 2018 at KNUST, we are passionate
+                about crafting fresh, local fruit-based drinks and creamy yogurt
+                that celebrate Ghana's vibrant flavors. Founded by a student
+                with a vision for healthy beverages, we source from local
+                farmers to create small-batch products that burst with natural
+                sweetness and probiotic goodness, ensuring every sip supports
+                both your health and our community.
               </p>
             </div>
           </div>
@@ -45,7 +51,12 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-semibold mb-8">Our Mission</h2>
           <p className="text-gray-600 text-xl max-w-3xl mx-auto">
-            At Rako Foods, our mission is to create exceptional beverage experiences using traditional Ghanaian ingredients and recipes. We believe that our drinks have the power to refresh, nourish, and connect people to our rich cultural heritage. Through our dedication to quality, natural ingredients, and authentic flavors, we aim to bring the true taste of Ghana to every bottle we produce.
+            At Rako Foods, our mission is to create exceptional beverage
+            experiences using traditional Ghanaian ingredients and recipes. We
+            believe that our drinks have the power to refresh, nourish, and
+            connect people to our rich cultural heritage. Through our dedication
+            to quality, natural ingredients, and authentic flavors, we aim to
+            bring the true taste of Ghana to every bottle we produce.
           </p>
         </div>
       </section>
@@ -65,7 +76,9 @@ export default function About() {
                 Natural Ingredients
               </h3>
               <p className="text-gray-600 text-center">
-                We use only fresh, natural ingredients sourced from local farmers to create authentic flavors without artificial additives.
+                We use only fresh, natural ingredients sourced from local
+                farmers to create authentic flavors without artificial
+                additives.
               </p>
             </div>
 
@@ -79,7 +92,8 @@ export default function About() {
                 Health Benefits
               </h3>
               <p className="text-gray-600 text-center">
-                Our probiotic yoghurt and fruit drinks are packed with nutrients that support digestive health and boost your immune system.
+                Our probiotic yoghurt and fruit drinks are packed with nutrients
+                that support digestive health and boost your immune system.
               </p>
             </div>
 
@@ -93,7 +107,8 @@ export default function About() {
                 Traditional Recipes
               </h3>
               <p className="text-gray-600 text-center">
-                We follow authentic Ghanaian recipes that have been perfected over generations, bringing you the true taste of our culture.
+                We follow authentic Ghanaian recipes that have been perfected
+                over generations, bringing you the true taste of our culture.
               </p>
             </div>
 
@@ -107,7 +122,8 @@ export default function About() {
                 Freshness Guaranteed
               </h3>
               <p className="text-gray-600 text-center">
-                Our small-batch production ensures that every bottle you receive is fresh and retains maximum flavor and nutritional value.
+                Our small-batch production ensures that every bottle you receive
+                is fresh and retains maximum flavor and nutritional value.
               </p>
             </div>
 
@@ -121,7 +137,8 @@ export default function About() {
                 Variety
               </h3>
               <p className="text-gray-600 text-center">
-                From refreshing sobolo to creamy yoghurt, we offer a diverse range of beverages to suit different tastes and occasions.
+                From refreshing sobolo to creamy yoghurt, we offer a diverse
+                range of beverages to suit different tastes and occasions.
               </p>
             </div>
 
@@ -131,9 +148,13 @@ export default function About() {
                   <span>S</span>
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-center">Sustainability</h3>
+              <h3 className="text-xl font-semibold mb-2 text-center">
+                Sustainability
+              </h3>
               <p className="text-gray-600 text-center">
-                By supporting local farmers and using eco-friendly packaging where possible, we strive to make a positive impact on our community.
+                By supporting local farmers and using eco-friendly packaging
+                where possible, we strive to make a positive impact on our
+                community.
               </p>
             </div>
           </div>
@@ -161,7 +182,10 @@ export default function About() {
                 </h3>
                 <p className="text-primary font-medium mb-2">Founder</p>
                 <p className="text-gray-600 text-sm">
-                  Passionate founder of RAKO Foods who started the journey in 2018 at KNUST with a vision to create authentic Ghanaian beverages. Her innovative approach to traditional drinks has created a beloved local brand.
+                  Passionate founder of RAKO Foods who started the journey in
+                  2018 at KNUST with a vision to create authentic Ghanaian
+                  beverages. Her innovative approach to traditional drinks has
+                  created a beloved local brand.
                 </p>
               </div>
             </div>
@@ -180,7 +204,10 @@ export default function About() {
                 <h3 className="text-xl font-semibold mb-1">Baaba</h3>
                 <p className="text-primary font-medium mb-2">Assistant</p>
                 <p className="text-gray-600 text-sm">
-                  The backbone of daily operations at RAKO Foods, Baaba ensures the perfect quality of our drinks and yoghurt products. Her attention to detail and dedication helps maintain our high standards.
+                  The backbone of daily operations at RAKO Foods, Baaba ensures
+                  the perfect quality of our drinks and yoghurt products. Her
+                  attention to detail and dedication helps maintain our high
+                  standards.
                 </p>
               </div>
             </div>
@@ -199,7 +226,10 @@ export default function About() {
                 <h3 className="text-xl font-semibold mb-1">Golden Boy</h3>
                 <p className="text-primary font-medium mb-2">Organiser</p>
                 <p className="text-gray-600 text-sm">
-                  The creative force behind RAKO Foods' events and customer experiences. Golden Boy coordinates our product launches, tastings, and special promotions, bringing energy and flair to everything we do.
+                  The creative force behind RAKO Foods' events and customer
+                  experiences. Golden Boy coordinates our product launches,
+                  tastings, and special promotions, bringing energy and flair to
+                  everything we do.
                 </p>
               </div>
             </div>
@@ -214,7 +244,8 @@ export default function About() {
             Try Our Refreshing Drinks Today
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Contact us to order our delicious yoghurt and fruit drinks for your personal enjoyment or your next event.
+            Contact us to order our delicious yoghurt and fruit drinks for your
+            personal enjoyment or your next event.
           </p>
           <Link
             href="/contact"

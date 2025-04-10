@@ -4,9 +4,9 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
-  title: "Rako Foods - Premium Catering Services",
+  title: "Rako Foods - Local Bar Services",
   description:
-    "Rako Foods - Catering for your special events including weddings, funerals, birthdays, and get-togethers.",
+    "Rako Foods - Local Bar Services for your special events including weddings, funerals, birthdays, and get-togethers.",
 };
 
 export default function RootLayout({

@@ -59,8 +59,8 @@ export default function Gallery() {
     },
     {
       src: "/images/thumbnail3.mp4",
-      title: "Event Catering",
-      description: "Our event catering services",
+      title: "Local Bar Services",
+      description: "Our Local Bar Services",
     },
     {
       src: "/images/thumbnail4.mp4",
