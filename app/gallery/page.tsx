@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 export default function Gallery() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -10,6 +10,13 @@ export default function Gallery() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [modalVideoIndex, setModalVideoIndex] = useState(0);
+
+  const setVideoRef = useCallback(
+    (element: HTMLVideoElement | null, index: number) => {
+      videoRefs.current[index] = element;
+    },
+    []
+  );
 
   const videos = [
     {
@@ -194,7 +201,7 @@ export default function Gallery() {
                   >
                     <div className="relative h-[500px] overflow-hidden">
                       <video
-                        ref={(el) => (videoRefs.current[index] = el)}
+                        ref={(el) => setVideoRef(el, index)}
                         className="w-full h-full object-cover"
                         muted
                         loop
