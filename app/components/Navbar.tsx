@@ -10,7 +10,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const navRef = useRef(null);
+  const navRef = useRef<HTMLDivElement | null>(null);
 
   // Handle scroll events
   useEffect(() => {
