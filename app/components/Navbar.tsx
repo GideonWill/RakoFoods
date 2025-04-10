@@ -31,7 +31,7 @@ const Navbar = () => {
 
   // Handle escape key press
   useEffect(() => {
-    const handleEscKey = (event) => {
+    const handleEscKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsMobileMenuOpen(false);
       }
@@ -45,11 +45,11 @@ const Navbar = () => {
 
   // Close mobile menu when clicking outside
   useEffect(() => {
-    function handleClickOutsideMobile(event) {
+    function handleClickOutsideMobile(event: MouseEvent) {
       if (
         isMobileMenuOpen &&
         navRef.current &&
-        !navRef.current.contains(event.target)
+        !navRef.current.contains(event.target as Node)
       ) {
         setIsMobileMenuOpen(false);
       }
@@ -62,7 +62,7 @@ const Navbar = () => {
   }, [isMobileMenuOpen]);
 
   // Modified isActive function to check current path
-  const isActive = (path) => {
+  const isActive = (path: string) => {
     if (path === "/") {
       return pathname === "/";
     }
