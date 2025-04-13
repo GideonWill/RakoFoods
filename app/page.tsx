@@ -1,8 +1,36 @@
 import Link from "next/link";
 import Image from "next/image";
-import AutoplayVideo from "./components/AutoplayVideo";
+import VideoGallery from "./components/VideoGallery";
 
 export default function Home() {
+  const featuredVideos = [
+    {
+      src: "/images/thumbnail3.mp4",
+      title: "Our Local Bar Services",
+      description: "Professional drink services for your events"
+    },
+    {
+      src: "/images/thumbnail1.mp4",
+      title: "Food Preparation",
+      description: "Fresh ingredients and expert preparation"
+    },
+    {
+      src: "/images/thumbnail2.mp4",
+      title: "Culinary Showcase",
+      description: "Delicious meals prepared with care"
+    },
+    {
+      src: "/images/thekitchen.mp4",
+      title: "Kitchen Tour",
+      description: "Behind the scenes of our culinary space"
+    },
+    {
+      src: "/images/thumbnail4.mp4",
+      title: "Food Presentation",
+      description: "Beautiful presentation for all events"
+    }
+  ];
+
   return (
     <div>
       {/* Hero Section */}
@@ -163,66 +191,7 @@ export default function Home() {
 
       {/* Video Gallery Preview */}
       <section className="section-padding">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title text-3xl mb-8">
-            See Our Services in Action
-          </h2>
-          <div className="aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg mb-12">
-            <div className="relative h-[500px] w-full">
-              <AutoplayVideo
-                src="/images/thumbnail3.mp4"
-                className="w-full h-full object-cover rounded-lg shadow-lg"
-                poster="/images/video-thumbnail.jpg"
-                controls={true}
-                muted={true}
-                loop={true}
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="h-48 bg-gray-200 rounded-lg overflow-hidden shadow-md">
-              <AutoplayVideo
-                src="/images/thumbnail1.mp4"
-                className="w-full h-full object-cover"
-                muted={true}
-                loop={true}
-                controls={false}
-              />
-            </div>
-            <div className="h-48 bg-gray-200 rounded-lg overflow-hidden shadow-md">
-              <AutoplayVideo
-                src="/images/thumbnail2.mp4"
-                className="w-full h-full object-cover"
-                muted={true}
-                loop={true}
-                controls={false}
-              />
-            </div>
-            <div className="h-48 bg-gray-200 rounded-lg overflow-hidden shadow-md">
-              <AutoplayVideo
-                src="/images/thekitchen.mp4"
-                className="w-full h-full object-cover"
-                muted={true}
-                loop={true}
-                controls={false}
-              />
-            </div>
-            <div className="h-48 bg-gray-200 rounded-lg overflow-hidden shadow-md">
-              <AutoplayVideo
-                src="/images/thumbnail4.mp4"
-                className="w-full h-full object-cover"
-                muted={true}
-                loop={true}
-                controls={false}
-              />
-            </div>
-          </div>
-          <div className="text-center mt-10">
-            <Link href="/gallery" className="btn-primary text-lg px-10 py-3">
-              View Full Gallery
-            </Link>
-          </div>
-        </div>
+        <VideoGallery videos={featuredVideos} />
       </section>
 
       {/* Testimonials */}

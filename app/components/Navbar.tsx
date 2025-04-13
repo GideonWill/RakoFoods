@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, TouchEvent } from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
@@ -11,6 +11,36 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const navRef = useRef<HTMLDivElement | null>(null);
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
+
+  // Handle swipe gesture for mobile menu
+  const handleTouchStart = (e: TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  
+  const handleTouchMove = (e: TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+  
+  const handleTouchEnd = () => {
+    const swipeThreshold = 100;
+    const swipeDistance = touchEndX.current - touchStartX.current;
+    
+    // Detect left swipe (close menu)
+    if (swipeDistance < -swipeThreshold && isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
+    
+    // Detect right swipe (open menu)
+    if (swipeDistance > swipeThreshold && !isMobileMenuOpen) {
+      setIsMobileMenuOpen(true);
+    }
+    
+    // Reset values
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+  };
 
   // Handle scroll events
   useEffect(() => {
@@ -74,26 +104,49 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
+  // Mobile menu animation variants for smoother transitions
+  const mobileMenuVariants = {
+    closed: {
+      opacity: 0,
+      x: -300,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut"
+      }
+    },
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
     <nav
       ref={navRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-white shadow-md py-2"
-          : "bg-white bg-opacity-95 shadow-sm py-4"
+          : "bg-white bg-opacity-80 backdrop-blur-sm shadow-sm py-3"
       }`}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo Section */}
           <motion.div
-            className="flex items-center"
+            className="flex items-center flex-1"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
           >
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <div className="relative h-16 w-48">
+              <div className="relative h-14 w-12 mr-2">
                 <Image
                   src="/images/logo.jpg"
                   alt="RAKO Foods Logo"
@@ -102,8 +155,11 @@ const Navbar = () => {
                   priority
                 />
               </div>
-              <span className="ml-1 text-2xl font-bold text-primary">
+              <span className="hidden sm:inline-block ml-1 text-2xl font-bold text-primary">
                 RAKO FOODS
+              </span>
+              <span className="sm:hidden ml-1 text-lg font-bold text-primary truncate max-w-[100px]">
+                RAKO
               </span>
             </Link>
           </motion.div>
@@ -282,7 +338,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center ml-auto">
             <motion.button
               type="button"
               className="text-primary p-2 rounded-md"
@@ -324,149 +380,160 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className="md:hidden bg-white shadow-md"
-        >
-          <div className="max-h-[80vh] overflow-y-auto">
-            {/* Mobile Menu Links */}
-            <div className="py-1">
+      {/* Mobile Menu with enhanced animations */}
+      <motion.div
+        className="md:hidden bg-white shadow-md overflow-hidden absolute w-full"
+        initial="closed"
+        animate={isMobileMenuOpen ? "open" : "closed"}
+        variants={mobileMenuVariants}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div className="max-h-[80vh] overflow-y-auto">
+          {/* Mobile Menu Links */}
+          <div className="py-1">
+            {/* Home Link */}
+            <motion.div
+              whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
+              className="relative"
+            >
+              <Link
+                href="/"
+                className={`block px-4 py-3 font-medium border-b border-gray-200 transition-colors duration-200 ${
+                  isActive("/") &&
+                  !isActive("/services") &&
+                  !isActive("/about") &&
+                  !isActive("/gallery") &&
+                  !isActive("/menu") &&
+                  !isActive("/contact")
+                    ? "text-primary border-l-4 border-l-primary pl-3"
+                    : "hover:text-primary"
+                }`}
+                onClick={handleLinkClick}
+              >
+                Home
+              </Link>
+            </motion.div>
+
+            {/* Services Link */}
+            <motion.div
+              whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
+              className="relative"
+            >
+              <Link
+                href="/services"
+                className={`block px-4 py-3 font-medium border-b border-gray-200 transition-colors duration-200 ${
+                  isActive("/services")
+                    ? "text-primary border-l-4 border-l-primary pl-3"
+                    : "hover:text-primary"
+                }`}
+                onClick={handleLinkClick}
+              >
+                Services
+              </Link>
+            </motion.div>
+
+            {/* Menu Link */}
+            <motion.div
+              whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
+              className="relative"
+            >
+              <Link
+                href="/menu"
+                className={`block px-4 py-3 font-medium border-b border-gray-200 transition-colors duration-200 ${
+                  isActive("/menu")
+                    ? "text-primary border-l-4 border-l-primary pl-3"
+                    : "hover:text-primary"
+                }`}
+                onClick={handleLinkClick}
+              >
+                Menu
+              </Link>
+            </motion.div>
+
+            {/* About Link */}
+            <motion.div
+              whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
+              className="relative"
+            >
+              <Link
+                href="/about"
+                className={`block px-4 py-3 font-medium border-b border-gray-200 transition-colors duration-200 ${
+                  isActive("/about")
+                    ? "text-primary border-l-4 border-l-primary pl-3"
+                    : "hover:text-primary"
+                }`}
+                onClick={handleLinkClick}
+              >
+                About
+              </Link>
+            </motion.div>
+
+            {/* Gallery Link */}
+            <motion.div
+              whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
+              className="relative"
+            >
+              <Link
+                href="/gallery"
+                className={`block px-4 py-3 font-medium border-b border-gray-200 transition-colors duration-200 ${
+                  isActive("/gallery")
+                    ? "text-primary border-l-4 border-l-primary pl-3"
+                    : "hover:text-primary"
+                }`}
+                onClick={handleLinkClick}
+              >
+                Gallery
+              </Link>
+            </motion.div>
+
+            {/* Contact Link */}
+            <motion.div
+              whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
+              className="relative"
+            >
+              <Link
+                href="/contact"
+                className={`block px-4 py-3 font-medium border-b border-gray-200 transition-colors duration-200 ${
+                  isActive("/contact")
+                    ? "text-primary border-l-4 border-l-primary pl-3"
+                    : "hover:text-primary"
+                }`}
+                onClick={handleLinkClick}
+              >
+                Contact
+              </Link>
+            </motion.div>
+
+            {/* Order Now CTA */}
+            <div className="px-4 py-4">
               <motion.div
-                whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
-                className="relative"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Link
-                  href="/"
-                  className={`block px-4 py-3 font-medium border-b border-gray-200 transition-colors duration-200 ${
-                    isActive("/") &&
-                    !isActive("/services") &&
-                    !isActive("/about") &&
-                    !isActive("/gallery") &&
-                    !isActive("/menu") &&
-                    !isActive("/contact")
-                      ? "text-primary border-l-4 border-l-primary pl-3"
-                      : "hover:text-primary"
-                  }`}
+                  href="/contact#order-form"
+                  className="block w-full text-center px-4 py-3 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all shadow-sm font-medium"
                   onClick={handleLinkClick}
                 >
-                  Home
+                  Order Now
                 </Link>
               </motion.div>
-
-              {/* Services Link */}
-              <motion.div
-                whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
-                className="relative"
-              >
-                <Link
-                  href="/services"
-                  className={`block px-4 py-3 font-medium border-b border-gray-200 transition-colors duration-200 ${
-                    isActive("/services")
-                      ? "text-primary border-l-4 border-l-primary pl-3"
-                      : "hover:text-primary"
-                  }`}
-                  onClick={handleLinkClick}
-                >
-                  Services
-                </Link>
-              </motion.div>
-
-              {/* Menu Link */}
-              <motion.div
-                whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
-                className="relative"
-              >
-                <Link
-                  href="/menu"
-                  className={`block px-4 py-3 font-medium border-b border-gray-200 transition-colors duration-200 ${
-                    isActive("/menu")
-                      ? "text-primary border-l-4 border-l-primary pl-3"
-                      : "hover:text-primary"
-                  }`}
-                  onClick={handleLinkClick}
-                >
-                  Menu
-                </Link>
-              </motion.div>
-
-              {/* About Link */}
-              <motion.div
-                whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
-                className="relative"
-              >
-                <Link
-                  href="/about"
-                  className={`block px-4 py-3 font-medium border-b border-gray-200 transition-colors duration-200 ${
-                    isActive("/about")
-                      ? "text-primary border-l-4 border-l-primary pl-3"
-                      : "hover:text-primary"
-                  }`}
-                  onClick={handleLinkClick}
-                >
-                  About
-                </Link>
-              </motion.div>
-
-              {/* Gallery Link */}
-              <motion.div
-                whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
-                className="relative"
-              >
-                <Link
-                  href="/gallery"
-                  className={`block px-4 py-3 font-medium border-b border-gray-200 transition-colors duration-200 ${
-                    isActive("/gallery")
-                      ? "text-primary border-l-4 border-l-primary pl-3"
-                      : "hover:text-primary"
-                  }`}
-                  onClick={handleLinkClick}
-                >
-                  Gallery
-                </Link>
-              </motion.div>
-
-              {/* Contact Link */}
-              <motion.div
-                whileHover={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
-                className="relative"
-              >
-                <Link
-                  href="/contact"
-                  className={`block px-4 py-3 font-medium border-b border-gray-200 transition-colors duration-200 ${
-                    isActive("/contact")
-                      ? "text-primary border-l-4 border-l-primary pl-3"
-                      : "hover:text-primary"
-                  }`}
-                  onClick={handleLinkClick}
-                >
-                  Contact
-                </Link>
-              </motion.div>
-
-              {/* Order Now CTA */}
-              <div className="px-4 py-4">
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Link
-                    href="/contact#order-form"
-                    className="block w-full text-center px-4 py-3 bg-primary text-white rounded-md hover:bg-opacity-90 transition-all shadow-sm font-medium"
-                    onClick={handleLinkClick}
-                  >
-                    Order Now
-                  </Link>
-                </motion.div>
+            </div>
+            
+            {/* Swipe hint for mobile users */}
+            <div className="px-4 py-2 text-center text-xs text-gray-400 italic bg-gray-100 border-t border-gray-200">
+              <div className="flex items-center justify-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Swipe left to close menu</span>
               </div>
             </div>
           </div>
-        </motion.div>
-      )}
+        </div>
+      </motion.div>
     </nav>
   );
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, TouchEvent } from "react";
 
 export default function Gallery() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -10,6 +10,12 @@ export default function Gallery() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [modalVideoIndex, setModalVideoIndex] = useState(0);
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
+  const isDragging = useRef<boolean>(false);
+  const startDragX = useRef<number>(0);
+  const currentDragX = useRef<number>(0);
+  const dragOffset = useRef<number>(0);
 
   const setVideoRef = useCallback(
     (element: HTMLVideoElement | null, index: number) => {
@@ -143,17 +149,17 @@ export default function Gallery() {
     setSelectedVideo(videoSrc);
   };
 
-  const handleNextVideo = () => {
+  const handleNextVideo = useCallback(() => {
     const nextIndex = (modalVideoIndex + 1) % videos.length;
     setModalVideoIndex(nextIndex);
     setSelectedVideo(videos[nextIndex].src);
-  };
+  }, [modalVideoIndex, videos]);
 
-  const handlePreviousVideo = () => {
+  const handlePreviousVideo = useCallback(() => {
     const prevIndex = (modalVideoIndex - 1 + videos.length) % videos.length;
     setModalVideoIndex(prevIndex);
     setSelectedVideo(videos[prevIndex].src);
-  };
+  }, [modalVideoIndex, videos]);
 
   const closeModal = () => {
     setSelectedVideo(null);
@@ -164,6 +170,100 @@ export default function Gallery() {
       closeModal();
     }
   };
+
+  // Touch handlers for swipe functionality
+  const handleTouchStart = (e: TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    isDragging.current = true;
+    startDragX.current = e.touches[0].clientX;
+    dragOffset.current = 0;
+    
+    if (carouselRef.current) {
+      carouselRef.current.style.transition = 'none';
+    }
+  };
+  
+  const handleTouchMove = (e: TouchEvent) => {
+    if (!isDragging.current) return;
+    
+    touchEndX.current = e.touches[0].clientX;
+    currentDragX.current = e.touches[0].clientX;
+    dragOffset.current = currentDragX.current - startDragX.current;
+    
+    if (carouselRef.current) {
+      const translateX = -currentIndex * 100 + (dragOffset.current / carouselRef.current.clientWidth * 100);
+      carouselRef.current.style.transform = `translateX(${translateX}%)`;
+    }
+  };
+  
+  const handleTouchEnd = () => {
+    if (!isDragging.current) return;
+    
+    isDragging.current = false;
+    
+    if (carouselRef.current) {
+      carouselRef.current.style.transition = 'transform 500ms ease-in-out';
+    }
+    
+    const swipeThreshold = 100;
+    const swipeDistance = touchEndX.current - touchStartX.current;
+    
+    if (swipeDistance < -swipeThreshold && currentIndex < videos.length - 1) {
+      // Swipe left - go to next
+      setCurrentIndex(currentIndex + 1);
+    } else if (swipeDistance > swipeThreshold && currentIndex > 0) {
+      // Swipe right - go to previous
+      setCurrentIndex(currentIndex - 1);
+    } else {
+      // Return to original position if swipe wasn't strong enough
+      if (carouselRef.current) {
+        carouselRef.current.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+    }
+    
+    // Reset values
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+    dragOffset.current = 0;
+  };
+
+  // Modal touch handlers for swiping between videos
+  const handleModalTouchStart = (e: TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    e.stopPropagation();
+  };
+  
+  const handleModalTouchEnd = (e: TouchEvent) => {
+    const swipeThreshold = 100;
+    const swipeDistance = e.changedTouches[0].clientX - touchStartX.current;
+    
+    if (swipeDistance < -swipeThreshold) {
+      // Swipe left - next video
+      handleNextVideo();
+    } else if (swipeDistance > swipeThreshold) {
+      // Swipe right - previous video
+      handlePreviousVideo();
+    }
+    
+    // Reset value
+    touchStartX.current = 0;
+    e.stopPropagation();
+  };
+
+  // Add gesture hint for mobile users
+  const [showSwipeHint, setShowSwipeHint] = useState(true);
+
+  useEffect(() => {
+    if (selectedVideo) {
+      // Show swipe hint for 3 seconds when modal opens
+      setShowSwipeHint(true);
+      const timer = setTimeout(() => {
+        setShowSwipeHint(false);
+      }, 3000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [selectedVideo]);
 
   return (
     <div className="pt-16">
@@ -188,6 +288,9 @@ export default function Gallery() {
               style={{
                 transform: `translateX(-${currentIndex * 100}%)`,
               }}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
               {videos.map((video, index) => (
                 <div
@@ -222,6 +325,29 @@ export default function Gallery() {
                   </div>
                 </div>
               ))}
+            </div>
+            {/* Navigation Buttons for Mobile */}
+            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 z-10 md:hidden">
+              <button
+                onClick={() => currentIndex > 0 && setCurrentIndex(currentIndex - 1)}
+                className="bg-white bg-opacity-30 rounded-full p-2 text-white"
+                aria-label="Previous slide"
+                disabled={currentIndex === 0}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={() => currentIndex < videos.length - 1 && setCurrentIndex(currentIndex + 1)}
+                className="bg-white bg-opacity-30 rounded-full p-2 text-white"
+                aria-label="Next slide"
+                disabled={currentIndex === videos.length - 1}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
             {/* Navigation Dots */}
             <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2 z-10">
@@ -315,12 +441,32 @@ export default function Gallery() {
               </svg>
             </button>
 
+            {/* Swipe Hint Overlay */}
+            {showSwipeHint && (
+              <div className="absolute inset-0 flex items-center justify-between px-10 z-20 pointer-events-none">
+                <div className="bg-black bg-opacity-60 text-white p-2 rounded-lg transform transition-opacity duration-500">
+                  <svg className="w-8 h-8 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  <span className="text-sm">Swipe</span>
+                </div>
+                <div className="bg-black bg-opacity-60 text-white p-2 rounded-lg transform transition-opacity duration-500">
+                  <svg className="w-8 h-8 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                  <span className="text-sm">Swipe</span>
+                </div>
+              </div>
+            )}
+
             <video
               key={selectedVideo}
               className="w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
               controls
               autoPlay
               onClick={(e) => e.stopPropagation()}
+              onTouchStart={handleModalTouchStart}
+              onTouchEnd={handleModalTouchEnd}
             >
               <source src={selectedVideo} type="video/mp4" />
               Your browser does not support the video tag.
