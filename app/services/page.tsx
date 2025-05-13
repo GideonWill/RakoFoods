@@ -329,44 +329,6 @@ export default function Services() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="order-2 lg:order-1">
-              <h3 className="text-2xl font-semibold mb-4">Funeral Services</h3>
-              <p className="text-gray-600 mb-4">
-                During times of loss, we provide respectful catering services
-                for funeral gatherings. Our team handles all aspects with care
-                and sensitivity, allowing you to focus on honoring your loved
-                one.
-              </p>
-              <ul className="list-disc pl-5 mb-6 text-gray-600">
-                <li>Traditional funeral food options</li>
-                <li>Discreet and professional service</li>
-                <li>Setup and cleanup included</li>
-                <li>Local drinks provided</li>
-                <li>Various service styles available</li>
-              </ul>
-              <Link href="/contact#funeral" className="btn-primary">
-                Contact for Funeral Catering
-              </Link>
-            </div>
-            <div className="h-96 bg-gray-200 relative overflow-hidden rounded-lg order-1 lg:order-2">
-              <Image
-                src="/images/funeral.jpg"
-                alt="Funeral Service Catering"
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-            <div className="h-96 bg-gray-200 relative overflow-hidden rounded-lg">
-              <Image
-                src="/images/wedding1.jpg"
-                alt="Birthday Party Catering"
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <div>
               <h3 className="text-2xl font-semibold mb-4">
                 Birthday Celebrations
               </h3>
@@ -386,10 +348,26 @@ export default function Services() {
                 Plan Your Birthday Catering
               </Link>
             </div>
+            <div className="h-96 bg-gray-200 relative overflow-hidden rounded-lg order-1 lg:order-2">
+              <Image
+                src="/images/wedding1.jpg"
+                alt="Birthday Party Catering"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1">
+            <div className="h-96 bg-gray-200 relative overflow-hidden rounded-lg">
+              <Image
+                src="/images/sem.jpg"
+                alt="Seminar Catering"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <div>
               <h3 className="text-2xl font-semibold mb-4">
                 Seminars & Corporate Events
               </h3>
@@ -408,14 +386,6 @@ export default function Services() {
               <Link href="/contact#corporate" className="btn-primary">
                 Request Corporate Catering
               </Link>
-            </div>
-            <div className="h-96 bg-gray-200 relative overflow-hidden rounded-lg order-1 lg:order-2">
-              <Image
-                src="/images/sem.jpg"
-                alt="Seminar Catering"
-                fill
-                style={{ objectFit: "cover" }}
-              />
             </div>
           </div>
         </div>
