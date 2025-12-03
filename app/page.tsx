@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import VideoGallery from "./components/VideoGallery";
+import ParticlesBackground from "./components/ParticlesBackground";
+import { FaUtensils, FaGlassCheers, FaCalendarAlt } from "react-icons/fa";
 
 export default function Home() {
   const featuredVideos = [
@@ -35,30 +37,37 @@ export default function Home() {
     <div>
       {/* Hero Section */}
       <section
-        className="hero-section flex items-center justify-center"
+        className="hero-section relative flex items-center justify-center min-h-[90vh] overflow-hidden isolate"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/team.jpg')",
+            "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/team.jpg')",
           marginTop: "64px",
           backgroundPosition: "center",
           backgroundSize: "cover",
+          backgroundAttachment: "fixed"
         }}
       >
-        <div className="text-center px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">
+        <div className="absolute inset-0 -z-10">
+          <ParticlesBackground />
+        </div>
+        <div className="text-center px-4 sm:px-6 lg:px-8 relative z-10">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 animate-fadeIn">
             Authentic Homemade Food & Drinks
           </h1>
-          <p className="text-xl sm:text-2xl text-white mb-8">
+          <p className="text-xl sm:text-2xl text-white mb-8 animate-slideUp">
             Weekly meal prep and local drink services for your convenience and
             events
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/services" className="btn-primary">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 animate-slideUp">
+            <Link 
+              href="/services" 
+              className="btn-primary transform hover:scale-105 transition-transform duration-300"
+            >
               Order Now
             </Link>
             <Link
               href="/contact"
-              className="bg-white text-primary py-2 px-8 rounded-sm font-medium hover:bg-opacity-90 transition-all"
+              className="bg-white text-primary py-2 px-8 rounded-sm font-medium hover:bg-opacity-90 transition-all transform hover:scale-105"
             >
               Contact Us
             </Link>
@@ -67,11 +76,11 @@ export default function Home() {
       </section>
 
       {/* Featured Services */}
-      <section className="section-padding bg-lightgreen">
+      <section className="section-padding bg-lightgreen relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title">Our Featured Services</h2>
+          <h2 className="section-title mb-12">Our Featured Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg overflow-hidden shadow-md transform transition-transform hover:scale-105">
+            <div className="bg-white rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
               <div className="h-64 relative">
                 <Image
                   src="/images/okrostew.jpg"
@@ -79,6 +88,9 @@ export default function Home() {
                   fill
                   style={{ objectFit: "cover" }}
                 />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                  <FaUtensils className="text-white text-4xl" />
+                </div>
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Weekly Meal Prep</h3>
@@ -88,14 +100,17 @@ export default function Home() {
                 </p>
                 <Link
                   href="/services#meal-prep"
-                  className="text-primary font-medium hover:underline"
+                  className="text-primary font-medium hover:underline inline-flex items-center"
                 >
                   View Options
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  </svg>
                 </Link>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg overflow-hidden shadow-md transform transition-transform hover:scale-105">
+            <div className="bg-white rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
               <div className="h-64 relative">
                 <Image
                   src="/images/sobolo.jpg"
@@ -103,6 +118,9 @@ export default function Home() {
                   fill
                   style={{ objectFit: "cover" }}
                 />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                  <FaGlassCheers className="text-white text-4xl" />
+                </div>
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">Local Drinks Bar</h3>
@@ -112,14 +130,17 @@ export default function Home() {
                 </p>
                 <Link
                   href="/services#drinks"
-                  className="text-primary font-medium hover:underline"
+                  className="text-primary font-medium hover:underline inline-flex items-center"
                 >
                   Explore Drinks
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  </svg>
                 </Link>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg overflow-hidden shadow-md transform transition-transform hover:scale-105">
+            <div className="bg-white rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
               <div className="h-64 relative">
                 <Image
                   src="/images/event.jpg"
@@ -127,20 +148,25 @@ export default function Home() {
                   fill
                   style={{ objectFit: "cover" }}
                 />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                  <FaCalendarAlt className="text-white text-4xl" />
+                </div>
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">
                   Local Bar Services
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Full-service catering for weddings, birthdays, funerals,
-                  seminars, and more.
+                  Full-service catering for weddings, birthdays, seminars, and more.
                 </p>
                 <Link
                   href="/services#events"
-                  className="text-primary font-medium hover:underline"
+                  className="text-primary font-medium hover:underline inline-flex items-center"
                 >
                   See Event Packages
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  </svg>
                 </Link>
               </div>
             </div>

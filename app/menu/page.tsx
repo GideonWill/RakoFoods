@@ -1,14 +1,21 @@
+'use client';
 import Link from "next/link";
 import Image from "next/image";
+import { useInView } from 'react-intersection-observer';
+import MenuItem from "../components/MenuItem";
+import SectionHeader from "../components/SectionHeader";
 
 export default function Menu() {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-primary text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">Our Menu</h1>
-          <p className="text-xl max-w-3xl mx-auto">
+      <section className="bg-primary text-white py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6 animate-fadeIn">
+            Our Menu
+          </h1>
+          <p className="text-xl max-w-3xl mx-auto animate-slideUp">
             Discover our range of fresh, local Ghanaian drinks, creamy yoghurt,
             and delicious homemade foods.
           </p>
@@ -16,7 +23,7 @@ export default function Menu() {
       </section>
 
       {/* Menu Navigation */}
-      <section className="bg-gray-100 py-8">
+      <section className="bg-gray-100 py-8 sticky top-16 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4">
             <a
@@ -50,81 +57,33 @@ export default function Menu() {
       {/* Yoghurt Section */}
       <section id="yoghurt" className="section-padding">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-12">
-            <div className="h-[1px] flex-grow bg-primary opacity-30"></div>
-            <h2 className="section-title px-4 mb-0">Our Yoghurt</h2>
-            <div className="h-[1px] flex-grow bg-primary opacity-30"></div>
-          </div>
+          <SectionHeader
+            title="Our Yoghurt"
+            subtitle="Fresh, creamy, and naturally delicious yoghurt made with care."
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-              <div className="h-64 relative">
-                <Image
-                  src="/images/yoghurt.jpg"
-                  alt="Yoghurt 350ml"
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="brightness-95"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="text-xl font-bold">Yoghurt - 350ml</p>
-                  <p className="text-3xl font-bold mt-1">GHS 15</p>
-                </div>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-600">
-                  Our creamy yoghurt in a convenient 350ml size, perfect for
-                  on-the-go refreshment.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-              <div className="h-64 relative">
-                <Image
-                  src="/images/holdyoghurt.jpg"
-                  alt="Yoghurt 2L"
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="brightness-95"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="text-xl font-bold">Yoghurt - 2L</p>
-                  <p className="text-3xl font-bold mt-1">GHS 80</p>
-                </div>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-600">
-                  Family-sized 2L yoghurt, perfect for sharing or keeping in
-                  your fridge for daily enjoyment.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-              <div className="h-64 relative">
-                <Image
-                  src="/images/yoghurt.jpg"
-                  alt="Yoghurt 4.5L"
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="brightness-95"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="text-xl font-bold">Yoghurt - 4.5L</p>
-                  <p className="text-3xl font-bold mt-1">GHS 150</p>
-                </div>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-600">
-                  Our largest yoghurt size, ideal for events, gatherings, or
-                  families who love our creamy yoghurt.
-                </p>
-              </div>
-            </div>
+            <MenuItem
+              image="/images/yoghurt.jpg"
+              title="Yoghurt - 350ml"
+              price={15}
+              description="Our creamy yoghurt in a convenient 350ml size, perfect for on-the-go refreshment."
+              delay={0}
+            />
+            <MenuItem
+              image="/images/holdyoghurt.jpg"
+              title="Yoghurt - 2L"
+              price={80}
+              description="Family-sized 2L yoghurt, perfect for sharing or keeping in your fridge for daily enjoyment."
+              delay={150}
+            />
+            <MenuItem
+              image="/images/yoghurt.jpg"
+              title="Yoghurt - 4.5L"
+              price={150}
+              description="Our largest yoghurt size, ideal for events, gatherings, or families who love our creamy yoghurt."
+              delay={300}
+            />
           </div>
         </div>
       </section>
@@ -132,125 +91,47 @@ export default function Menu() {
       {/* Local Drinks Section */}
       <section id="drinks" className="section-padding bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-12">
-            <div className="h-[1px] flex-grow bg-primary opacity-30"></div>
-            <h2 className="section-title px-4 mb-0">Local Drinks</h2>
-            <div className="h-[1px] flex-grow bg-primary opacity-30"></div>
-          </div>
+          <SectionHeader
+            title="Local Drinks"
+            subtitle="Traditional and refreshing beverages made with authentic recipes."
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-              <div className="h-64 relative">
-                <Image
-                  src="/images/sob2.jpg"
-                  alt="Sobolo 350ml"
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="brightness-95"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="text-xl font-bold">Sobolo - 350ml</p>
-                  <p className="text-3xl font-bold mt-1">GHS 10</p>
-                </div>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-600">
-                  Refreshing hibiscus drink packed with antioxidants and natural
-                  goodness.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-              <div className="h-64 relative">
-                <Image
-                  src="/images/sobolo.jpg"
-                  alt="Sobolo 1L"
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="brightness-95"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="text-xl font-bold">Sobolo - 1L</p>
-                  <p className="text-3xl font-bold mt-1">GHS 25</p>
-                </div>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-600">
-                  Our 1L bottle of traditional sobolo drink, perfect for family
-                  enjoyment.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-              <div className="h-64 relative">
-                <Image
-                  src="/images/sob3.jpg"
-                  alt="Sobolo Gallon"
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="brightness-95"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="text-xl font-bold">Sobolo - Gallon</p>
-                  <p className="text-3xl font-bold mt-1">GHS 150</p>
-                </div>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-600">
-                  Large gallon size, ideal for events and gatherings.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-              <div className="h-64 relative">
-                <Image
-                  src="/images/lamugin.jpg"
-                  alt="Lamugin 350ml"
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="brightness-95"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="text-xl font-bold">Lamugin - 350ml</p>
-                  <p className="text-3xl font-bold mt-1">GHS 12</p>
-                </div>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-600">
-                  Traditional lemon-based drink with a refreshing citrus flavor.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-              <div className="h-64 relative">
-                <Image
-                  src="/images/pineapple.jpg"
-                  alt="Pineapple Mint 350ml"
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="brightness-95"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="text-xl font-bold">Pineapple Mint - 350ml</p>
-                  <p className="text-3xl font-bold mt-1">GHS 15</p>
-                </div>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-600">
-                  Sweet pineapple juice with refreshing mint, a perfect tropical
-                  combination.
-                </p>
-              </div>
-            </div>
+            <MenuItem
+              image="/images/sob2.jpg"
+              title="Sobolo - 350ml"
+              price={10}
+              description="Refreshing hibiscus drink packed with antioxidants and natural goodness."
+              delay={0}
+            />
+            <MenuItem
+              image="/images/sobolo.jpg"
+              title="Sobolo - 1L"
+              price={25}
+              description="Our 1L bottle of traditional sobolo drink, perfect for family enjoyment."
+              delay={150}
+            />
+            <MenuItem
+              image="/images/sob3.jpg"
+              title="Sobolo - Gallon"
+              price={150}
+              description="Large gallon size, ideal for events and gatherings."
+              delay={300}
+            />
+            <MenuItem
+              image="/images/lamugin.jpg"
+              title="Lamugin - 350ml"
+              price={12}
+              description="Traditional lemon-based drink with a refreshing citrus flavor."
+              delay={450}
+            />
+            <MenuItem
+              image="/images/pineapple.jpg"
+              title="Pineapple Mint - 350ml"
+              price={15}
+              description="Sweet pineapple juice with refreshing mint, a perfect tropical combination."
+              delay={600}
+            />
           </div>
         </div>
       </section>
@@ -258,86 +139,33 @@ export default function Menu() {
       {/* Homemade Foods Section */}
       <section id="foods" className="section-padding">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-12">
-            <div className="h-[1px] flex-grow bg-primary opacity-30"></div>
-            <h2 className="section-title px-4 mb-0">Homemade Foods</h2>
-            <div className="h-[1px] flex-grow bg-primary opacity-30"></div>
-          </div>
+          <SectionHeader
+            title="Homemade Foods"
+            subtitle="Authentic Ghanaian dishes prepared with love and tradition."
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-              <div className="h-64 relative">
-                <Image
-                  src="/images/soup.jpg"
-                  alt="Traditional Soups"
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="brightness-95"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="text-xl font-bold">Traditional Soups</p>
-                  <p className="text-lg font-medium mt-1">
-                    Contact for Pricing
-                  </p>
-                </div>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-600">
-                  Authentic Ghanaian soups made with fresh, local ingredients.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-              <div className="h-64 relative">
-                <Image
-                  src="/images/okrostew.jpg"
-                  alt="Traditional Stews"
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="brightness-95"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="text-xl font-bold">Traditional Stews</p>
-                  <p className="text-lg font-medium mt-1">
-                    Contact for Pricing
-                  </p>
-                </div>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-600">
-                  Hearty stews prepared with traditional recipes and quality
-                  ingredients.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300">
-              <div className="h-64 relative">
-                <Image
-                  src="/images/yamchips.jpg"
-                  alt="Salads and Yam Chips"
-                  fill
-                  style={{ objectFit: "cover" }}
-                  className="brightness-95"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <p className="text-xl font-bold">Salads & Yam Chips</p>
-                  <p className="text-lg font-medium mt-1">
-                    Contact for Pricing
-                  </p>
-                </div>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-600">
-                  Fresh salads and crispy yam chips, perfect as sides or light
-                  meals.
-                </p>
-              </div>
-            </div>
+            <MenuItem
+              image="/images/soup.jpg"
+              title="Traditional Soups"
+              price="Contact for Pricing"
+              description="Authentic Ghanaian soups made with fresh, local ingredients."
+              delay={0}
+            />
+            <MenuItem
+              image="/images/okrostew.jpg"
+              title="Traditional Stews"
+              price="Contact for Pricing"
+              description="Hearty stews prepared with traditional recipes and quality ingredients."
+              delay={150}
+            />
+            <MenuItem
+              image="/images/yamchips.jpg"
+              title="Salads & Yam Chips"
+              price="Contact for Pricing"
+              description="Fresh salads and crispy yam chips, perfect as sides or light meals."
+              delay={300}
+            />
           </div>
         </div>
       </section>
@@ -345,91 +173,53 @@ export default function Menu() {
       {/* Packages Section */}
       <section id="packages" className="section-padding bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-12">
-            <div className="h-[1px] flex-grow bg-primary opacity-30"></div>
-            <h2 className="section-title px-4 mb-0">Special Packages</h2>
-            <div className="h-[1px] flex-grow bg-primary opacity-30"></div>
-          </div>
+          <SectionHeader
+            title="Special Packages"
+            subtitle="Custom packages for events and wholesale buyers."
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-[1.02] transition-transform duration-300">
               <div className="bg-primary text-white py-6 px-6 text-center">
                 <h3 className="text-2xl font-bold">Event Package</h3>
-                <p className="text-lg mt-2">
-                  Perfect for celebrations & gatherings
-                </p>
+                <p className="text-lg mt-2">Perfect for celebrations & gatherings</p>
               </div>
               <div className="p-6">
                 <ul className="space-y-4">
                   <li className="flex items-center">
-                    <svg
-                      className="w-5 h-5 text-primary mr-2"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
+                    <svg className="w-5 h-5 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     <span>Custom drink selection</span>
                   </li>
                   <li className="flex items-center">
-                    <svg
-                      className="w-5 h-5 text-primary mr-2"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
+                    <svg className="w-5 h-5 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     <span>Mix and match options</span>
                   </li>
                   <li className="flex items-center">
-                    <svg
-                      className="w-5 h-5 text-primary mr-2"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
+                    <svg className="w-5 h-5 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     <span>Bulk discounts available</span>
                   </li>
                   <li className="flex items-center">
-                    <svg
-                      className="w-5 h-5 text-primary mr-2"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
+                    <svg className="w-5 h-5 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     <span>Delivery to your venue</span>
                   </li>
                 </ul>
                 <div className="mt-8">
-                  <Link
-                    href="/contact"
-                    className="block text-center bg-primary text-white py-3 px-6 rounded-md hover:bg-primary-dark transition-colors duration-300"
-                  >
+                  <Link href="/contact" className="block text-center bg-primary text-white py-3 px-6 rounded-md hover:bg-primary-dark transition-colors duration-300">
                     Request Quote
                   </Link>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-[1.02] transition-transform duration-300">
               <div className="bg-primary text-white py-6 px-6 text-center">
                 <h3 className="text-2xl font-bold">Wholesale Package</h3>
                 <p className="text-lg mt-2">For retailers & bulk buyers</p>
@@ -437,73 +227,58 @@ export default function Menu() {
               <div className="p-6">
                 <ul className="space-y-4">
                   <li className="flex items-center">
-                    <svg
-                      className="w-5 h-5 text-primary mr-2"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
+                    <svg className="w-5 h-5 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span>Special wholesale pricing</span>
+                    <span>Competitive wholesale pricing</span>
                   </li>
                   <li className="flex items-center">
-                    <svg
-                      className="w-5 h-5 text-primary mr-2"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
+                    <svg className="w-5 h-5 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span>Regular delivery schedules</span>
+                    <span>Regular delivery schedule</span>
                   </li>
                   <li className="flex items-center">
-                    <svg
-                      className="w-5 h-5 text-primary mr-2"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
+                    <svg className="w-5 h-5 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span>Customized product mix</span>
+                    <span>Minimum order quantities</span>
                   </li>
                   <li className="flex items-center">
-                    <svg
-                      className="w-5 h-5 text-primary mr-2"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
+                    <svg className="w-5 h-5 text-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     <span>Dedicated account manager</span>
                   </li>
                 </ul>
                 <div className="mt-8">
-                  <p className="text-center text-gray-600">
-                    Contact us for wholesale pricing and partnership
-                    opportunities
-                  </p>
+                  <Link href="/contact" className="block text-center bg-primary text-white py-3 px-6 rounded-md hover:bg-primary-dark transition-colors duration-300">
+                    Contact Sales
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Floating Order Button */}
+      <div className="fixed bottom-8 right-8 z-50">
+        <Link
+          href="/contact#order-form"
+          className="bg-accent text-white px-6 py-3 rounded-full shadow-lg hover:bg-accent-dark transition-colors duration-300 flex items-center space-x-2 group"
+        >
+          <span>Order Now</span>
+          <svg
+            className="w-5 h-5 transform transition-transform group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </Link>
+      </div>
 
       {/* Call to Action */}
       <section className="bg-primary text-white py-16">
