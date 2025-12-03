@@ -33,13 +33,7 @@ export default function About() {
             <div>
               <h2 className="text-3xl font-semibold mb-4">Our Story</h2>
               <p className="text-gray-600 mb-4">
-                At Rako Foods, established in 2018 at KNUST, we are passionate
-                about crafting fresh, local fruit-based drinks and creamy yogurt
-                that celebrate Ghana's vibrant flavors. Founded by a student
-                with a vision for healthy beverages, we source from local
-                farmers to create small-batch products that burst with natural
-                sweetness and probiotic goodness, ensuring every sip supports
-                both your health and our community.
+              Rako Foods was founded by a health-conscious young individual who believed in promoting the healthy consumption of herbs, fruits, grains, and dairy-based products, while reducing the intake of overly processed imported beverages. What started as a small venture during her first degree—selling a single drink, sobolo, at her hostel—has grown significantly. Today, we offer a variety of products, including fruit juices, yogurt, and other local drinks. Additionally, we prepare bulk homemade meals for busy individuals who want to enjoy traditional dishes without the hassle of cooking. We firmly believe that food plays a vital role in human well-being and should be prepared and consumed healthily. That’s why we are committed to advocating for wholesome foods and drinks!
               </p>
             </div>
           </div>
@@ -182,10 +176,7 @@ export default function About() {
                 </h3>
                 <p className="text-primary font-medium mb-2">Founder</p>
                 <p className="text-gray-600 text-sm">
-                  Passionate founder of RAKO Foods who started the journey in
-                  2018 at KNUST with a vision to create authentic Ghanaian
-                  beverages. Her innovative approach to traditional drinks has
-                  created a beloved local brand.
+                A visionary leader and a health-conscious entrepreneur, specialized in producing nutritious drinks made from herbs, fruits, grains, and dairy. Committed to sustainability and natural ingredients, the brand aims to promote healthier lifestyles through innovative beverage solutions.
                 </p>
               </div>
             </div>
